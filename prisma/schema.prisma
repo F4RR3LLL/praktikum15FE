@@ -1,0 +1,19 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Tugas {
+  id         Int      @id @default(autoincrement())
+  judul      String
+  mataKuliah String
+  deskripsi  String?
+  tenggat    DateTime
+  status     String   @default("BELUM") // BELUM | PROSES | SELESAI
+  createdAt  DateTime @default(now())
+}
